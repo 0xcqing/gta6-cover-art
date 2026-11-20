@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Horizon — Cover Art Studio</title>
+<meta name="description" content="Make a three-panel Vice City style cover from your own photos, right in the browser.">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>VICE HORIZON</h1>
+        <p>Cover art studio</p>
+      </div>
+    </div>
+    <p class="tagline">Three panels. One sunset. Your story.</p>
+    <button id="addBtn" class="btn btn-primary" type="button">Add photos</button>
+    <input id="file" type="file" accept="image/*" multiple hidden>
+  </header>
+
+  <aside class="sidebar sidebar-left">
+    <section class="card">
+      <h2>Photos <span id="photoCount">0</span></h2>
+      <div id="photos" class="photos">
+        <p class="empty">Add your own photos, or drop them anywhere.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Panels <span>click to edit</span></h2>
+      <div id="panels" class="panels"></div>
+    </section>
+
+    <section class="card">
+      <h2>Crop <span id="cropHint">Panel 1</span></h2>
+      <div class="segmented" role="group" aria-label="Crop mode">
+        <button id="modeFill" class="seg" type="button" data-mode="fill">Fill</button>
+        <button id="modeFit" class="seg" type="button" data-mode="fit">Fit</button>
+      </div>
+      <label class="slider-row" for="zoom">Zoom <input id="zoom" type="range" min="1" max="3" step="0.01" value="1"></label>
+      <p class="hint">Drag the poster to move. Scroll to zoom.</p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="stage-head">
+      <span id="stageLabel">Landscape · 1920 × 1080</span>
+      <span class="stage-hint">Click a panel, then choose a photo</span>
+    </div>
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="poster" width="1280" height="720" aria-label="Live poster preview"></canvas>
+    </div>
+  </section>
+
+  <aside class="sidebar sidebar-right">
+    <section class="card">
+      <h2>Lettering</h2>
+      <label class="field">Caption
+        <input id="caption" type="text" maxlength="42" value="LAST EXIT TO PARADISE" autocomplete="off" spellcheck="false">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="64" value="A PALM COAST PICTURES PRODUCTION" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="presets" id="presets"></div>
+    </section>
+
+    <section class="card">
+      <h2>Export</h2>
+      <label class="field">Size
+        <select id="size">
+          <option value="landscape">1920 × 1080 · landscape</option>
+          <option value="square">1080 × 1080 · square</option>
+          <option value="portrait">1080 × 1350 · portrait</option>
+        </select>
+      </label>
+      <button id="export" class="btn btn-export" type="button">Export PNG</button>
+      <p id="status" role="status" class="status">Everything stays on this device.</p>
+    </section>
+  </aside>
+</div>
+
+<div class="drop-veil" id="dropVeil" aria-hidden="true"><span>Drop photos to add them</span></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
